@@ -3,12 +3,18 @@
 
 using namespace std;
 
+
+const int MAX_BARANG = 100;
+ 
 struct Barang {
   string kode;
   string nama;
   int harga;
   int stok;
 };
+
+Barang daftarBarang[MAX_BARANG];
+int jumlahBarang = 0;
 
 struct Node {
   Barang data;
@@ -133,6 +139,15 @@ void tambahDataBarang() {
   cout << "Stok: ";
   cin >> b.stok;
 
+  // Menambahkan data ke dalam array
+  if (jumlahBarang < MAX_BARANG) {
+    daftarBarang[jumlahBarang++] = b;
+  } else {
+    cout << "Kapasitas barang penuh!" << endl;
+    return;
+  }
+
+  // Sisanya tetap seperti sebelumnya
   Node* newNode = new Node(b);
   newNode->next = NULL;
 
@@ -238,4 +253,3 @@ int main() {
 
   return 0;
 }
-
